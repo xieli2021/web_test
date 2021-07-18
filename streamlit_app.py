@@ -91,8 +91,8 @@ st.pyplot(fig)
 st.write("It looks fit well.")
 st.write("The Weibull distribution is similar to the exponential distribution. While the exponential distribution assumes a constant hazard, the Weibull distribution assumes a monotonic hazard that can either be increasing or decreasing but not both. It has two parameters. The shape parameter (σ ) controls whether hazard increases (σ<1 ) or decreases (σ>1 ) (in the exponential distribution, this parameter is set to 1). The scale parameter, (1/σ)exp(-β0/σ), determines the scale of this increase/decrease. Since the Weibull distribution simplifies to the exponential distribution when σ=1, the null hypothesis that σ=1 can be tested using a Wald test. The main advantage of this model is that it is both a PH and AFT model, so both hazard ratios and time ratios can be estimated. Again, the main drawback is that the assumption of monotonicity of the baseline hazard may be implausible in some cases.")
 
-from reliability.Fitters import Fit_Everything
-fig=plt.figure()
-results = Fit_Everything(failures=t)
-st.pyplot(fig)
+#from reliability.Fitters import Fit_Everything
+#fig=plt.figure()
+#results = Fit_Everything(failures=t)
+#st.pyplot(fig)
 
