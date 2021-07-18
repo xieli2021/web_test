@@ -4,3 +4,5 @@ streamlit
 seaborn
 numpy
 matplotlib
+reliability
+statsmodels
