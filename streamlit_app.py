@@ -341,4 +341,5 @@ ts_len
 fig=plt.figure()
 ts_basic=tss.random_walk(length=ts_len,first_value_rw=10,drift_rw=0,
                          mean_wn=0,variance_wn=11,plot=True)
+st.write("Simulate incidents with random walk.")
 st.pyplot(fig)
