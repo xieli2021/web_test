@@ -1,6 +1,4 @@
 import streamlit as st
-# To make things easier later, we're also importing numpy and pandas for
-# working with sample data.
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -25,7 +23,16 @@ def read_clean(url):
 
 df=read_clean(url)
 
+def count_by_month(df):
+    df=df.copy()
+    df['ym']=df['start'].dt.to_period('M')
+    cdf=df.groupby('ym').size()
+    cdf=cdf.reset_index()
+    cdf.columns=['ym', 'number']
+    cdf.ym=cdf.ym.dt.to_timestamp()
+    return(cdf)
 
+cdf=count_by_month(df)
 
 st.title('TTE Analysis on California WildFires')
 st.write("Time-to-event (TTE) data is unique because the outcome of interest is not only whether or not an event occurred, but also when that event occurred.")
@@ -41,9 +48,18 @@ plt.xlim(0,150)
 st.pyplot(fig)
 
 st.write("The Figure below show time to next California WildFires incidents vs start time.")
-st.write("It seems seasonal exist but no trends.")
 fig=plt.figure()
 ax=sns.scatterplot(data=df,
                    x='start',
                    y='t')
+st.pyplot(fig)
+
+st.write("The Figure below show California WildFires incidents by month.")
+st.write("It seems seasonal exist but no trends.")
+fig=plt.figure()
+ax=sns.lineplot(data=cdf,
+             x='ym',
+             y='number')
+plt.xlabel('')
+plt.ylabel('Fires incidents by month')
 st.pyplot(fig)
