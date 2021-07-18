@@ -20,3 +20,4 @@ def read_clean(url):
         df.loc[i,'t']=(df.start[i]-df.start[i-1])/np.timedelta64(1, 'D')
     st.write(df)
     return(df)
+df=read_clean(url)
