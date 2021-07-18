@@ -3,7 +3,6 @@ import streamlit as st
 # working with sample data.
 import numpy as np
 import pandas as pd
-import seaborn as sns
 
 st.title('My first app')
 st.write("Here's our first attempt at using data to create a table:")
