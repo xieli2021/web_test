@@ -3,6 +3,8 @@ import streamlit as st
 # working with sample data.
 import numpy as np
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 url='https://raw.githubusercontent.com/xieli2021/web_test/main/California_Fire_Incidents%20(1).csv'
 
@@ -22,4 +24,26 @@ def read_clean(url):
     return(df)
 
 df=read_clean(url)
+
+
+
+st.title('TTE Analysis on California WildFires')
+st.write("Time-to-event (TTE) data is unique because the outcome of interest is not only whether or not an event occurred, but also when that event occurred.")
+st.write("In this application, I will focus on time to next California WildFires. The application will show:  a.The distribution of time interval between two fire incidents will be display. b.The trend of fire accidents. c.The seasonal of fire accidents.")
+st.write("The table below shows start time, end time, location (contry) and time to next incidents of every California WildFires incidents between 2013 and 2020.")
+
 st.write(df)
+
+st.write("The Figure below show distribution of time to next California WildFires incidents.")
+fig=plt.figure()
+ax=sns.kdeplot(df.t)
+plt.xlim(0,150)
+st.pyplot(fig)
+
+st.write("The Figure below show time to next California WildFires incidents vs start time.")
+st.write("It seems seasonal exist but no trends.")
+fig=plt.figure()
+ax=sns.scatterplot(data=df,
+                   x='start',
+                   y='t')
+st.pyplot(fig)
