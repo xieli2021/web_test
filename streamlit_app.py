@@ -18,6 +18,7 @@ def read_clean(url):
     df=df.reset_index(drop=True)
     for i in np.r_[1:df.shape[0]]:
         df.loc[i,'t']=(df.start[i]-df.start[i-1])/np.timedelta64(1, 'D')
-    st.write(df)
     return(df)
+
 df=read_clean(url)
+st.write(df)
