@@ -15,8 +15,6 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import seaborn as sns
-import math
-from datetime import datetime
 import matplotlib.pyplot as plt
 from statsmodels.tsa.seasonal import seasonal_decompose
 from reliability.Distributions import Weibull_Distribution
@@ -196,35 +194,6 @@ class time_series_simulator():
             plt.figure()
         return(ar)
 
-    def seasonal(self,length,first_season,season_coef=1,
-                 season_cal='additive',
-                 mean_wn=0,variance_wn=4,radius_wn=2,
-                 distribution_wn='Guassian',plot=False,
-                 constraint_positive=False):
-        '''
-        Simulate seasonal time series
-        '''
-        season_len=len(first_season)
-        season_time=math.ceil(length/season_len)
-        first_season=np.array(first_season)
-        ts=np.array(first_season)
-        for t in np.r_[1:season_time]:
-            wn=self.white_noise(length=season_len,mean_wn=mean_wn,
-                                variance_wn=variance_wn,radius_wn=radius_wn,
-                                distribution_wn=distribution_wn)
-            if season_cal=='additive':
-                season_uni=first_season+season_coef+wn
-            elif season_cal=='multiplicative':
-                season_uni=first_season*season_coef+wn
-            if constraint_positive:
-                season_uni[season_uni<0]=0
-            ts=np.append(ts,season_uni)
-        ts=ts[range(length)]
-        if plot:
-            plt.plot(ts)
-            plt.figure()
-        return(ts)
-    
     def diff_days(self,first_date,last_date):
         '''
         Calculate difference of days between first and last date
@@ -257,7 +226,7 @@ class time_series_simulator():
             plt.xlabel('')
             plt.figure()
         if write:
-            write_time=str(datetime.now())[:19].replace(' ','-').replace(':','-')
+            write_time=str('a')[:19].replace(' ','-').replace(':','-')
             file_name=file_name+write_time+'.csv'
             df.to_csv(file_name,index=False)
         return(df)
@@ -312,7 +281,7 @@ class time_series_simulator():
             plt.xlabel('')
             plt.figure()
         if write:
-            write_time=str(datetime.now())[:19].replace(' ','-').replace(':','-')
+            write_time=str('a')[:19].replace(' ','-').replace(':','-')
             file_name=file_name+write_time+'.csv'
             df.to_csv(file_name,index=False)
         if return_df:
@@ -354,7 +323,7 @@ class time_series_simulator():
             plt.xlabel('')
             plt.figure()
         if write:
-            write_time=str(datetime.now())[:19].replace(' ','-').replace(':','-')
+            write_time=str('a')[:19].replace(' ','-').replace(':','-')
             file_name=file_name+write_time+'.csv'
             df.to_csv(file_name,index=False)
         if return_df:
