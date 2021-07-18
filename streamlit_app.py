@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
+st.title('My first app')
+
 url='https://raw.githubusercontent.com/xieli2021/web_test/main/California_Fire_Incidents%20(1).csv'
 
 def read_clean(url):
@@ -21,5 +23,4 @@ def read_clean(url):
     return(df)
 
 df=read_clean(url)
-st.write(df)
 
